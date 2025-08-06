@@ -11,8 +11,8 @@ function DeleteConfirm({ parentId, setShowDeleteConfirm}) {
     const handleDelete = () => dispatch(removeComment(parentId));
 
     const actionBar = <>
-        <Button onClick={handleCancelDelete} className="bg-[#66727f] text-white font-medium hover:opacity-70 rounded-lg whitespace-nowrap px-3 py-1 sm:py-2">NO, CANCEL</Button>
-        <Button onClick={handleDelete} className="bg-[#fd5b5f] text-white font-medium hover:opacity-70 rounded-lg whitespace-nowrap px-3 sm:px-5 py-1 sm:py-2">YES, DELETE</Button>
+        <Button onClick={handleCancelDelete} className="bg-[#66727f] text-white font-medium hover:opacity-70 rounded-lg whitespace-nowrap px-3 sm:w-[100%] py-1 sm:py-2">NO, CANCEL</Button>
+        <Button onClick={handleDelete} className="bg-[#fd5b5f] text-white font-medium hover:opacity-70 rounded-lg whitespace-nowrap px-3 sm:w-[100%] py-1 sm:py-2">YES, DELETE</Button>
     </>
 
     return (
