@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { commentsReducer, addComment, addReply, changeVote, removeComment } from "./slices/commentsSlice";
+import { commentsReducer, addComment, addReply, changeVote, removeComment, editComment } from "./slices/commentsSlice";
 
 const store = configureStore({
     reducer: {
@@ -7,5 +7,5 @@ const store = configureStore({
     }
 });
 
-export {store, addComment, addReply, changeVote, removeComment};
+export {store, addComment, addReply, changeVote, removeComment, editComment};
 export * from './thunks/fetchComments';

@@ -72,6 +72,27 @@ const commentsSlice = createSlice({
             }
             return {...state, data: changeCommentVote(state.data, parentId, voteType)};
         },
+        editComment(state, action){
+            const {parentId, newMessage} = action.payload;
+            function editCommentRec(comments, parentId, newMessage){
+                return comments.map(comment => {
+                    if(comment.author+comment.createdAt === parentId){
+                        return {
+                            ...comment,
+                            message: newMessage
+                        };
+                    }
+                    if(comment.comments){
+                        return {
+                            ...comment,
+                            comments: editCommentRec(comment.comments, parentId, newMessage),
+                        }
+                    }
+                    return comment;
+                });
+            }
+            return {...state, data: editCommentRec(state.data, parentId, newMessage)};
+        },
         removeComment(state, action){
             const parentId = action.payload;
             function deleteComment(comments, parentId) {
@@ -83,11 +104,10 @@ const commentsSlice = createSlice({
                                 comments: deleteComment(comment.comments, parentId)
                             };
                         }
+                        return comment;
                     });
             }
-            const content = {...state, data: deleteComment(state.data, parentId)};
-            console.log(content);
-            return content;
+            return {...state, data: deleteComment(state.data, parentId)};
         }
     },
     extraReducers (builder) {
@@ -105,5 +125,5 @@ const commentsSlice = createSlice({
     }
 });
 
-export const { addComment, addReply, changeVote, removeComment } = commentsSlice.actions;
+export const { addComment, addReply, changeVote, removeComment, editComment } = commentsSlice.actions;
 export const commentsReducer = commentsSlice.reducer;

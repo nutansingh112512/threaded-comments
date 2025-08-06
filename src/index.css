@@ -2,6 +2,7 @@
 
 body {
     background-color: #f5f6fa;
+    margin: 0 5px;
 }
 
 .overflow-y-auto::-webkit-scrollbar {
