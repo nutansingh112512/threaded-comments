@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Avatar from "./Avatar";
 import Button from "./Button";
 import Panel from "./Panel";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { addComment, addReply } from "../store";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,13 +11,6 @@ function CommentBox ({type, parentId, setShowReplyBox, scrollRef, ...rest}, ref)
     const dispatch = useDispatch();
     const {currentUser, data} = useSelector((state)=>state.comments);
 
-
-    const scrollToBottom = () => {
-        scrollRef.current?.scrollTo({
-            top: scrollRef.current.scrollHeight - ref.current.offsetHeight,
-            behavior: 'smooth'
-        })
-    }
     const handleCommentChange = (event) => setCommentValue(event.target.value);
     const handleCommentSubmit = (event) => {
         event.preventDefault();
@@ -41,6 +34,13 @@ function CommentBox ({type, parentId, setShowReplyBox, scrollRef, ...rest}, ref)
         }
     }
 
+    const scrollToBottom = useCallback(() => {
+        scrollRef.current?.scrollTo({
+            top: scrollRef.current.scrollHeight - ref.current.offsetHeight,
+            behavior: 'smooth'
+        })
+    }, [ref, scrollRef]);
+
     const didMount = useRef(false);
     useEffect(() => {
         if (!didMount.current) {
@@ -48,7 +48,7 @@ function CommentBox ({type, parentId, setShowReplyBox, scrollRef, ...rest}, ref)
             return;
         }
         if(type === 'SEND') scrollToBottom();
-    }, [data.length])
+    }, [data.length, scrollToBottom, type])
 
     const classes = classNames(rest.className, 'sm:gap-3');
     return (
