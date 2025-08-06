@@ -86,11 +86,11 @@ function CommentsListItem ({ comment }) {
                         ?<EditBox comment={comment} setShowEditBox={setShowEditBox} />
                         :<p className='text-gray-500'>{message}</p>
                     }
-                    {showReplyBox && <CommentBox ref={replyBox} type='REPLY' parentId={parentId} setShowReplyBox={setShowReplyBox} />}
                 </div>
             </Panel>
+            {showReplyBox && <CommentBox ref={replyBox} type='REPLY' parentId={parentId} setShowReplyBox={setShowReplyBox} />}
             <div className='pl-2 sm:pl-8'>
-                <div className='border-l-3 border-gray-300 pl-2 sm:pl-8'>
+                <div className='border-l-[3px] border-gray-300 pl-2 sm:pl-8'>
                     {
                         comment.comments && comment.comments.length > 0 && comment.comments.map(reply => <CommentsListItem key={reply.author+reply.createdAt} comment={reply} />)
                     }

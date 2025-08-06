@@ -36,7 +36,7 @@ const commentsSlice = createSlice({
                         return {
                             ...comment,
                             comments: comment.comments
-                                ?[...comment.comments, replyObj]
+                                ?[replyObj, ...comment.comments ]
                                 :[replyObj]
                         };
                     }
