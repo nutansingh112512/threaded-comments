@@ -24,7 +24,7 @@ function CommentsList () {
     }
 
     return(
-        <div ref={scrollRef} className="relative max-h-dvh max-w-5xl mx-auto overflow-y-auto ">
+        <div ref={scrollRef} className="relative h-dvh max-w-5xl mx-auto overflow-y-auto ">
             {data.map(comment =><CommentsListItem key={comment.author+comment.createdAt} comment={comment} />)}
             <CommentBox type="SEND" className="sticky bottom-0" parentId='root' scrollRef={scrollRef} ref={commentBoxRef} />
         </div>
