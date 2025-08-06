@@ -18,7 +18,7 @@ function CommentsList () {
     const {data, isLoading, error} = useSelector((state) => state.comments);
 
     if(isLoading) {
-         return <Skeleton times={3} className='h-10 w-full' />
+         return <Skeleton times={3} className='h-10 w-[100%]' />
     } else if(error) {
         return <div>Error loading comments...</div>
     }

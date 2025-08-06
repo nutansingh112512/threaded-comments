@@ -14,7 +14,7 @@ function Button({
     'flex items-center justify-center cursor-pointer px-1 py-1',
     {
       'opacity-80': loading,
-      'rounded-full': rounded,
+      'rounded-[9999px]': rounded,
       'bg-white': outline,
     }
   );

@@ -64,7 +64,7 @@ function CommentsListItem ({ comment }) {
                     {voteCount}
                     <Button onClick={handleDownVote} className='px-3 hover:opacity-50'>-</Button>
                 </div>
-                <div className='flex flex-col w-full gap-3'>
+                <div className='flex flex-col w-[100%] gap-3'>
                     <div className='flex flex-col sm:flex-row sm:justify-between sm:items-center'>
                         <div className='flex flex-row items-center sm:gap-3'>
                             <Avatar avatar={avatar} />

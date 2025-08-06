@@ -23,8 +23,8 @@ function EditBox({ comment, setShowEditBox }){
     }
 
     return (
-        <form onSubmit={handleUpdateSubmit} className="flex flex-col  sm:items-start w-full gap-2 sm:gap-5">
-            <textarea value={commentValue} onKeyDown={handleReturn} onChange={handleCommentChange} rows="3" className="w-full border rounded-lg border-gray-500 py-1 sm:py-2 px-3 sm:px-5 focus:outline-0 resize-none" />
+        <form onSubmit={handleUpdateSubmit} className="flex flex-col  sm:items-start w-[100%] gap-2 sm:gap-5">
+            <textarea value={commentValue} onKeyDown={handleReturn} onChange={handleCommentChange} rows="3" className="w-[100%] border rounded-lg border-gray-500 py-1 sm:py-2 px-3 sm:px-5 focus:outline-0 resize-none" />
             <Button className="bg-[#5258bc] text-white font-medium sm:font-bold hover:opacity-70 rounded-lg px-3 sm:px-5 py-1 sm:py-2 sm:self-end">UPDATE</Button>
         </form>
     )
