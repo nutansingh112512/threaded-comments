@@ -46,7 +46,7 @@ function CommentsListItem ({ comment }) {
     
     const replyBox = useRef(null);
     const handleReplyClick = () => {
-        setShowReplyBox(prev => !prev);
+        setShowReplyBox(true);
     }
     const handleUpVote = () => dispatch(changeVote({parentId, voteType: 'increment'}));
     const handleDownVote = () => dispatch(changeVote({parentId, voteType: 'decrement'}));
@@ -55,6 +55,19 @@ function CommentsListItem ({ comment }) {
         if (showReplyBox && replyBox.current) {
             replyBox.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
+        const handler = (event) => {
+            if(!replyBox.current) {
+                return;
+            }
+            if(!replyBox.current.contains(event.target)){
+                setShowReplyBox(false);
+            }
+        };
+        document.addEventListener('click', handler, true)
+
+        return ()=>{
+            document.removeEventListener('click', handler);
+        };
     }, [showReplyBox])
     return (
         <div>
