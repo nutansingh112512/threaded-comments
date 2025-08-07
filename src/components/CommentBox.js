@@ -38,8 +38,10 @@ function CommentBox ({type, parentId, setShowReplyBox, scrollRef, ...rest}, ref)
         })
     }, [ref, scrollRef]);
 
+    const textArea = useRef(null);
     const didMount = useRef(false);
     useEffect(() => {
+        if(type === 'REPLY' && textArea.current) textArea.current.focus();
         if (!didMount.current) {
             didMount.current = true;
             return;
@@ -53,7 +55,7 @@ function CommentBox ({type, parentId, setShowReplyBox, scrollRef, ...rest}, ref)
             <Avatar avatar={currentUser.avatar} />
             <div className="w-[100%]">
                 <form onSubmit={handleCommentSubmit} className="flex flex-col sm:flex-row  sm:items-start w-[100%] gap-2 sm:gap-5">
-                    <textarea value={commentValue} onKeyDown={handleReturn} onChange={handleCommentChange} rows="3" className="w-[100%] border rounded-lg border-gray-500 py-1 sm:py-2 px-3 sm:px-5 focus:outline-0 resize-none" placeholder="Add a comment..." />
+                    <textarea ref={textArea} value={commentValue} onKeyDown={handleReturn} onChange={handleCommentChange} rows="3" className="w-[100%] border rounded-lg border-gray-500 py-1 sm:py-2 px-3 sm:px-5 focus:outline-0 resize-none" placeholder="Add a comment..." />
                     <Button disabled={isUnChanged} className="bg-[#5258bc] text-white font-medium sm:font-bold hover:opacity-70 rounded-lg px-3 sm:px-5 py-1 sm:py-2">{type}</Button>
                 </form>
             </div>
