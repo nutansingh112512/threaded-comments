@@ -1,6 +1,5 @@
 import className from 'classnames';
 import React from 'react';
-import  { GoSync } from 'react-icons/go';
 
 function Button({
   children,
@@ -16,12 +15,13 @@ function Button({
       'opacity-80': loading,
       'rounded-[9999px]': rounded,
       'bg-white': outline,
+      'opacity-70': rest.disabled
     }
   );
 
   return (
-    <button ref={ref} {...rest} disabled={loading} className={classes}>
-      {loading ? <GoSync className='animate-spin' /> : children}
+    <button ref={ref} {...rest} className={classes}>
+      {children}
     </button>
   );
 }

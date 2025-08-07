@@ -4,7 +4,7 @@ import Button from './Button';
 import Panel from './Panel';
 import { useEffect, useRef, useState } from 'react';
 import CommentBox from './CommentBox';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeVote } from '../store';
 import EditBox from './EditBox';
 import DeleteConfirm from './DeleteConfirm';
@@ -41,7 +41,6 @@ function CommentsListItem ({ comment }) {
     const [showEditBox, setShowEditBox] = useState(false);
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const dispatch = useDispatch();
-    const { currentUser } = useSelector(state => state.comments);
     const parentId = comment.author+comment.createdAt;
     
     const replyBox = useRef(null);
@@ -84,15 +83,12 @@ function CommentsListItem ({ comment }) {
                             <h2 className='font-medium'>{author}</h2>
                             <p className='text-gray-500 ml-2'>{timeAgo(createdAt)}</p>
                         </div>
-                        {
-                            currentUser.author === comment.author
-                            ?<div className='flex flex-row self-end'>
+                        <div className='flex flex-row self-end'>
                                 <Button className='text-[#fd5b5f] font-bold hover:opacity-70' onClick={()=>setShowDeleteConfirm(true)} ><GoTrash className='mr-1' />Delete</Button>
                                 {showDeleteConfirm && <DeleteConfirm parentId={parentId} setShowDeleteConfirm={setShowDeleteConfirm} />}
                                 <Button className='text-[#5659ba] font-bold hover:opacity-70' onClick={()=>setShowEditBox(prev=>!prev)} ><GoPencil className='mr-1' />Edit</Button>
-                            </div>
-                            :<Button className='text-[#5659ba] font-bold hover:opacity-70 self-end' onClick={handleReplyClick}><GoReply className='mr-1' />Reply</Button>
-                        }
+                                <Button className='text-[#5659ba] font-bold hover:opacity-70 self-end' onClick={handleReplyClick}><GoReply className='mr-1' />Reply</Button>
+                        </div>
                     </div>
                     {
                         showEditBox
